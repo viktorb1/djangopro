@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="{% static 'myapp/output.css' %}" />
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <nav class="bg-white shadow-lg">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex justify-between">
+                    <div class="flex space-x-8 items-center">
+                        <div>
+                            <a href="#" class="flex items-center px-2 py-4">
+                                <img class="h-8 w-8" src="{% static 'myapp/images/shopping.png' %}" alt="" />
+                                <span class="text-lg text-gray-500">Buy & sell</span>
+                            </a>
+                        </div>
+                        <div class="items-center space-1 text-green-800 font-semibold">
+                            <a href="#"
+                               class="text-green-800 font-semibold border-b-4 border-green-900 py-4 px-2">Home</a>
+                            <a href="#" class="text-green-800 font-semibold">About</a>
+                            <a href="#" class="text-green-800 font-semibold">Contact</a>
+                            {% if user.is_authenticated %}
+                                <a class="ml-64" href="{% url 'users:logout' %}">Logout</a>
+                                <a class="ml-64" href="{% url 'users:profile' %}">Profile</a>
+                            {% else %}
+                                <a class="ml-64" href="{% url 'users:login' %}">Login</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        {% block content %}{% endblock %}
+    </body>
+</html>
