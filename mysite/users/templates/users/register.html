@@ -16,5 +16,8 @@
             {% endfor %}
             <button class="bg-green-500 text-white px-5 py-2 rounded mt-10" type="submit">Register</button>
         </form>
+        <div class="my-5 mx-20">
+            Already have an account? <a class="font-semibold text-indigo-800" href="{% url 'users:login' %}">Login</a>
+        </div>
     </div>
 {% endblock %}

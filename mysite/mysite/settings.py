@@ -25,6 +25,10 @@ SECRET_KEY = 'django-insecure-o5h%9n32^v&3j8cbk)08)lt5vn7%=cu_&jpx&k#^22)q38i)w8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+if DEBUG:
+    STRIPE_PUBLISHABLE_KEY = 'pk_test_51N036vFkNsK3rQNnKxJB8P9jmr7eDc8hQ7vGAoxgdib66LWQ7iEMzyNMl2BKFcWeygGdAq9dzwj8pMfBiTN4L8Qy004jpduafF'
+    STRIPE_SECRET_KEY = 'sk_test_51N036vFkNsK3rQNn9MEgqFLrJHU7PqFV9pLGRZPp96DJ77TQFwcFnWVji036XDb7FZ8XUmxMmWNSUEyiHxCVtMLJ00UXvivMam'
+
 ALLOWED_HOSTS = []
 
 
@@ -128,3 +132,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = "/media/"
 LOGIN_REDIRECT_URL = "myapp:products"
 LOGIN_URL = 'users:login'
+
+
+

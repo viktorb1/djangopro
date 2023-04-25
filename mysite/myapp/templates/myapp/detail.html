@@ -14,6 +14,36 @@
             <div class="mt-5 text-gray-700">
                 <h2>{{ product.desc }}</h2>
             </div>
+            <div class="mt-5 text-gray-700">
+                <h2>
+                    Posted by: <a href="{% url 'users:sellerprofile' product.seller_name.id %}">{{ product.seller_name }}</a>
+                </h2>
+            </div>
+            <div class="mt-5 text-gray-700">
+                <h2>Contact: {{ product.seller_name.profile.contact_number }}</h2>
+            </div>
+            <div>
+                <button class="bg-green-500 text-white px-3 py-2 my-6" id="checkout">Checkout</button>
+            </div>
         </div>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script type="text/javascript">
+            let stripe = Stripe('{{ stripe_publishable_key }}')
+            let checkoutButton = document.getElementById('checkout')
+            checkoutButton.addEventListener('click', function() {
+                fetch("{% url 'myapp:api_checkout_session' id=product.id %}", {method: 'POST'})
+                .then(function(response) {
+                    return response.json()
+                }).then(function(session) {
+                    return stripe.redirectToCheckout({sessionId:session.sessionId})
+                }).then(function(result) {
+                    if (result.error) {
+                        alert(result.error.message)
+                    }
+                }).catch(function(error) {
+                    console.error('Error', error)
+                })
+            })
+        </script>
     </div>
 {% endblock %}
